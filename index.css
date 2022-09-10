@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: cornflowerblue;
+  }
+  
+.game-board {
+    display: grid;
+    padding-top: 10%;
+    grid-template-rows: 200px 200px 200px;
+    grid-template-columns: 200px 200px 200px;   
+      
+}
+
+.game-space {
+    background-color: goldenrod;
+    border: 1px solid lightgoldenrodyellow;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 250px;
+    color: rgb(228, 118, 77)
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+
+.game-space:not(.disabled):hover {
+    background: pink;
+}
+Copy
+
+
+.button-group {
+    padding-left: 5%;
+    padding-top: 10%
+}
+
+button {
+    display:block;
+    background-color: pink;
+    color: rgb(228, 118, 77);
+    width: 250px;
+    height: 40px
+
+}
+    
+  
+    
+
+
+
+  
+
+  
+  
