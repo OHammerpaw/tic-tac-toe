@@ -28,6 +28,7 @@ const turn = (element) => {
         document.getElementById(element.currentTarget.id).innerHTML = currentSelection  
         if (checkForWin() == true) {     
             document.querySelector('.end-game-text').textContent = ("Player " + currentSelection + " wins!")
+            endGame()
         } else {
             if(currentSelection == 'X') {
                 currentSelection ='O';
@@ -38,7 +39,8 @@ const turn = (element) => {
         } 
         turnCount ++
         if (turnCount == 9) {
-            document.querySelector('.end-game-text').textContent = ("It's a cat's game!")
+            document.querySelector('.end-game-text').textContent = ("It's a cat's game!") 
+            endGame()
         }
 }
 
@@ -84,7 +86,13 @@ const checkForWin = () => {
 
     }
 
+const endGame = () => {
+    document.querySelectorAll('.game-space').forEach( item => {
+        item.removeEventListener('click', turn)
+    })
+}
 
 document.querySelectorAll('.game-space').forEach( item => {
     item.addEventListener('click', turn)
 })
+
