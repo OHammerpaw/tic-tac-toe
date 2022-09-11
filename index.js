@@ -30,9 +30,12 @@ const turn = (element) => {
             document.querySelector('.end-game-text').textContent = ("Player " + currentSelection + " wins!")
             endGame()
         } else {
+            document.querySelector('.player-text').textContent = ('Player X, make your choice...')
             if(currentSelection == 'X') {
+                document.querySelector('.player-text').textContent = ('Player O, make your choice...')
                 currentSelection ='O';
             } else {
+                document.querySelector('.player-text').textContent = ('Player X, make your choice...')
                 currentSelection = 'X';
             }
         }
@@ -66,6 +69,7 @@ const resetGame = () => {
         currentSelection = 'X'
         turnCount = 0
         document.querySelector('.end-game-text').textContent = ('')
+        document.querySelector('.player-text').textContent = ('Player X, make your choice...')
 	})
 }
 
@@ -95,4 +99,8 @@ const endGame = () => {
 document.querySelectorAll('.game-space').forEach( item => {
     item.addEventListener('click', turn)
 })
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelector('.player-text').textContent = ('Player X, make your choice...')
+  })
 
