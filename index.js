@@ -14,15 +14,56 @@ const winCondition = [
     ['space3', 'space6', 'space9'],
     ['space3', 'space5', 'space7'],
     ['space1', 'space5', 'space9']
-    ]
+    
+]
+
+
+
 
 let nextSelection = 'X'
 const turn = (id) => {
-    document.getElementById(id).innerHTML = nextSelection
-    if(nextSelection == 'X') {
-        nextSelection ='O';
-    } else {
-        nextSelection = 'X'; 
-    }
+    let innerHTML = document.getElementById(id).innerHTML
+    if(checkIfEmpty(innerHTML)== true) {
+        document.getElementById(id).innerHTML = nextSelection
+        if(nextSelection == 'X') {
+            nextSelection ='O';
+        } else {
+            nextSelection = 'X'; 
+        }
+    } 
 }
+
+const checkIfEmpty = (innerHTML) => {
+    if(innerHTML == '' || innerHTML == null) {
+        return true
+    } 
+    return false
+}
+
+const getGameSpaces = () => {
+    let parent = document.getElementById('game-board')
+    return Array.from(parent.getElementsByTagName('div'))
+}
+
+// const resetGame = () => {
+// 	getGameSpaces().forEach(gameSpace => {
+// 		gameSpace.innerHTML = ''
+// 		// gameSpace.classList.remove(nextSelection)
+// 		gameSpace.removeEventListener('click', turn)
+// 		gameSpace.addEventListener('click', turn, { once: true })
+// 	})
+// }
+
+// resetGame()
+
+
+const resetGame = () => {
+    var spaceId;
+    for (var i = 1; i < getGameSpaces.length; i++) {
+        spaceId = "space" + i;
+        document.getElementById(space1).value = '';
+    }
+    
+}
+newGame.addEventListener('click', resetGame)
 
