@@ -7,6 +7,7 @@ const space1 = document.querySelector('#space1')
 
 const playerX = 'X'
 const playerO = 'O'
+
 const winConditions = [
     ['space1', 'space2', 'space3'],
     ['space4', 'space5', 'space6'],
@@ -18,23 +19,22 @@ const winConditions = [
     ['space1', 'space5', 'space9']   
 ]
 
-let nextSelection = 'X'
+let currentSelection = 'X'
 
 const turn = (element) => {
     let innerHTML = document.getElementById(element.currentTarget.id).innerHTML
     if(checkIfEmpty(innerHTML)== true) {
-        document.getElementById(element.currentTarget.id).innerHTML = nextSelection
-        if(nextSelection == 'X') {
-            nextSelection ='O';
+        document.getElementById(element.currentTarget.id).innerHTML = currentSelection  
+        if (checkForWin() == true) {     
+            document.querySelector('.end-game-text').textContent = ("Player " + currentSelection + " wins!")
         } else {
-            nextSelection = 'X';
+            if(currentSelection == 'X') {
+                currentSelection ='O';
+            } else {
+                currentSelection = 'X';
+            }
         }
-    } 
-    let win = checkForWin()
-    console.log(win)
-    if (win == true) {
-        
-    }
+        } 
 }
 
 const checkIfEmpty = (innerHTML) => {
@@ -52,41 +52,30 @@ const getGameSpaces = () => {
 const resetGame = () => {
 	getGameSpaces().forEach(gameSpace => {
 		gameSpace.innerHTML = ''
-		gameSpace.classList.remove(nextSelection)
+		gameSpace.classList.remove(currentSelection)
 		gameSpace.removeEventListener('click', turn)
 		gameSpace.addEventListener('click', turn, { once: true })
         nextSelection = 'X'
+        document.querySelector('.end-game-text').textContent = ('')
 	})
 }
 
 newGame.addEventListener('click', resetGame)
 
 const checkForWin = () => {
-    let conditions = winConditions[0]
-    for(let i = 0; i < conditions.length; i++) {
-        let item1 = document.getElementById(conditions[0]).innerHTML.trim()
-        let item2 = document.getElementById(conditions[1]).innerHTML.trim()
-        let item3 = document.getElementById(conditions[2]).innerHTML.trim()
-
-        if (item1 == item2 && item2 == item3) {
-            return true
-        }    
+    for(let i = 0; i < winConditions.length; i++) {
+        let item1 = document.getElementById(winConditions[i][0]).innerHTML
+        let item2 = document.getElementById(winConditions[i][1]).innerHTML
+        let item3 = document.getElementById(winConditions[i][2]).innerHTML
+        if (checkIfEmpty(item1) === false && checkIfEmpty(item2) === false && checkIfEmpty(item3) === false) {
+            if (item1 === item2 && item2 === item3) {
+                return true
+            }    
+        }
     }
     return false
 
     }
-    // winConditions.forEach(condition => {
-
-    //     let item1 = document.getElementById(condition[0]).innerHTML.trim()
-    //     let item2 = document.getElementById(condition[1]).innerHTML.trim()
-    //     let item3 = document.getElementById(condition[2]).innerHTML.trim()
-
-    //     if (item1 == item2 && item2 == item3) {
-    //         return true
-    //     }    
-    // })
-    // return false
-// }
 
 document.querySelectorAll('.game-space').forEach( item => {
     item.addEventListener('click', turn)

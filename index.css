@@ -32,12 +32,24 @@ body {
 .game-space:not(.disabled):hover {
     background: pink;
 }
-Copy
-
 
 .button-group {
     padding-left: 5%;
     padding-top: 10%
+}
+
+.end-game-text {
+    position: absolute;
+    margin-top: 15px;
+    margin-right: 300px;
+    font-size: 50px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color:rgb(228, 118, 77);
+    background-color: pink;
+    display: inline-block;
+    width: 400px;
 }
 
 button {
