@@ -1,7 +1,9 @@
 const gameBoard = document.querySelector('.game-board')
+const gameBoardId = document.querySelector('#game-board')
 const gameSpace = document.querySelector('.game-space')
 const newGame = document.querySelector('#new-game')
 const playerComputer = document.querySelector('#computer-player')
+const space1 = document.querySelector('#space1')
 
 const playerX = 'X'
 const playerO = 'circle'
@@ -41,29 +43,20 @@ const checkIfEmpty = (innerHTML) => {
 }
 
 const getGameSpaces = () => {
-    let parent = document.getElementById('game-board')
+    let parent = document.getElementById('game-board');
     return Array.from(parent.getElementsByTagName('div'))
 }
-
-// const resetGame = () => {
-// 	getGameSpaces().forEach(gameSpace => {
-// 		gameSpace.innerHTML = ''
-// 		// gameSpace.classList.remove(nextSelection)
-// 		gameSpace.removeEventListener('click', turn)
-// 		gameSpace.addEventListener('click', turn, { once: true })
-// 	})
-// }
-
-// resetGame()
-
+console.log (getGameSpaces())
 
 const resetGame = () => {
-    var spaceId;
-    for (var i = 1; i < getGameSpaces.length; i++) {
-        spaceId = "space" + i;
-        document.getElementById(space1).value = '';
-    }
-    
+	getGameSpaces().forEach(gameSpace => {
+		gameSpace.innerHTML = ''
+		gameSpace.classList.remove(nextSelection)
+		gameSpace.removeEventListener('click', turn)
+		gameSpace.addEventListener('click', turn, { once: true })
+	})
 }
+
 newGame.addEventListener('click', resetGame)
+
 
