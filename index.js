@@ -7,6 +7,7 @@ const space1 = document.querySelector('#space1')
 
 const playerX = 'X'
 const playerO = 'O'
+let turnCount = 0
 
 const winConditions = [
     ['space1', 'space2', 'space3'],
@@ -35,7 +36,12 @@ const turn = (element) => {
             }
         }
         } 
+        turnCount ++
+        if (turnCount == 9) {
+            document.querySelector('.end-game-text').textContent = ("It's a cat's game!")
+        }
 }
+
 
 const checkIfEmpty = (innerHTML) => {
     if(innerHTML == '' || innerHTML == null) {
@@ -55,7 +61,8 @@ const resetGame = () => {
 		gameSpace.classList.remove(currentSelection)
 		gameSpace.removeEventListener('click', turn)
 		gameSpace.addEventListener('click', turn, { once: true })
-        nextSelection = 'X'
+        currentSelection = 'X'
+        turnCount = 0
         document.querySelector('.end-game-text').textContent = ('')
 	})
 }
@@ -76,6 +83,7 @@ const checkForWin = () => {
     return false
 
     }
+
 
 document.querySelectorAll('.game-space').forEach( item => {
     item.addEventListener('click', turn)
