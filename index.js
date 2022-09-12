@@ -5,8 +5,6 @@ const newGame = document.querySelector('#new-game')
 const playerComputer = document.querySelector('#computer-player')
 const space1 = document.querySelector('#space1')
 
-const playerX = 'X'
-const playerO = 'O'
 let turnCount = 0
 
 const winConditions = [
@@ -66,11 +64,11 @@ const resetGame = () => {
 		gameSpace.classList.remove(currentSelection)
 		gameSpace.removeEventListener('click', turn)
 		gameSpace.addEventListener('click', turn, { once: true })
-        currentSelection = 'X'
-        turnCount = 0
-        document.querySelector('.end-game-text').textContent = ('')
-        document.querySelector('.player-text').textContent = ('Player X, make your choice...')
 	})
+    currentSelection = 'X'
+    turnCount = 0
+    document.querySelector('.end-game-text').textContent = ('')
+    document.querySelector('.player-text').textContent = ('Player X, make your choice...')
 }
 
 newGame.addEventListener('click', resetGame)
